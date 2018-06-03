@@ -1,9 +1,11 @@
 package fleetmanagement.trucker.module1.utilities;
 
+import java.time.Instant;
+
 //This class holds the required alert attributes fetched from vehicle repository.
 public class AlertAttributes {
     private String vin;
-    private String lastRecordedTime;
+    private Instant lastRecordedTime;
 
     public AlertAttributes() {
     }
@@ -16,11 +18,11 @@ public class AlertAttributes {
         this.vin = vin;
     }
 
-    public String getLastRecordedTime() {
+    public Instant getLastRecordedTime() {
         return lastRecordedTime;
     }
 
-    public void setLastRecordedTime(String lastRecordedTime) {
+    public void setLastRecordedTime(Instant lastRecordedTime) {
         this.lastRecordedTime = lastRecordedTime;
     }
 }

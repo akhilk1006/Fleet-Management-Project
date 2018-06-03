@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.time.Instant;
 import java.util.UUID;
 
 @Entity
@@ -12,18 +13,20 @@ public class Alert {
     @Id
     private String id;
     private String vin;
-    private String alertMessage;
-    private String alertPriority;
-    private String recordedTime;
+    private String message;
+    private String priority;
+    private Instant timestamp;
+
     public Alert() {
         this.id = UUID.randomUUID().toString();
     }
-    public Alert(String vehicleId, String alertMessage, String alertPriority, String recordedTime){
+
+    public Alert(String vehicleId, String message, String priority, Instant timestamp){
         this.setId(UUID.randomUUID().toString());
         this.vin = vehicleId;
-        this.alertMessage = alertMessage;
-        this.alertPriority = alertPriority;
-        this.recordedTime = recordedTime;
+        this.message = message;
+        this.priority = priority;
+        this.timestamp = timestamp;
     }
 
     public String getId() {
@@ -42,27 +45,27 @@ public class Alert {
         this.vin = vin;
     }
 
-    public String getAlertMessage() {
-        return alertMessage;
+    public String getMessage() {
+        return message;
     }
 
-    public void setAlertMessage(String alertMessage) {
-        this.alertMessage = alertMessage;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public String getAlertPriority() {
-        return alertPriority;
+    public String getPriority() {
+        return priority;
     }
 
-    public void setAlertPriority(String alertPriority) {
-        this.alertPriority = alertPriority;
+    public void setPriority(String priority) {
+        this.priority = priority;
     }
 
-    public String getRecordedTime() {
-        return recordedTime;
+    public Instant getTimestamp() {
+        return timestamp;
     }
 
-    public void setRecordedTime(String recordedTime) {
-        this.recordedTime = recordedTime;
+    public void setTimestamp(Instant timestamp) {
+        this.timestamp = timestamp;
     }
 }

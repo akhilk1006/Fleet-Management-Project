@@ -9,15 +9,16 @@ import fleetmanagement.trucker.module1.repository.VehicleRepository;
 import fleetmanagement.trucker.module1.rules.AlertRules;
 import fleetmanagement.trucker.module1.utilities.AlertAttributes;
 import org.jeasy.rules.api.Facts;
-import org.jeasy.rules.api.Rules;
 import org.jeasy.rules.api.RulesEngine;
 import org.jeasy.rules.core.DefaultRulesEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
+@Transactional
 @Service
 public class TruckReadingService implements ReadingService{
 
@@ -38,18 +39,21 @@ public class TruckReadingService implements ReadingService{
     @Async
     public void checkForAlertsAndProcess(Reading reading) throws ResourceNotFoundException {
         Optional<Vehicle> result = this.vehicleRepository.findById(reading.getVin());
-        Vehicle vehicle = result.orElseThrow(() -> new ResourceNotFoundException("vehicleDetails not found"));
-        AlertAttributes alertAttributes = new AlertAttributes();
-        alertAttributes.setVin(reading.getVin());
-        alertAttributes.setLastRecordedTime(reading.getTimestamp());
-        this.alertRules.setAlertAttributes(alertAttributes);
-        RulesEngine rulesEngine = new DefaultRulesEngine();
-        addFactsForCurrentReading(vehicle, reading);
-        this.alertRules.registerRules(); //register the rules of interest, with the rules Engine.
-        //validate the facts against rules.
-        rulesEngine.fire(this.alertRules.getRules(), this.alertRules.getFacts());
-    }
 
+        if(result.isPresent()) {
+            Vehicle vehicle = result.get();
+            AlertAttributes alertAttributes = new AlertAttributes();
+            alertAttributes.setVin(reading.getVin());
+            alertAttributes.setLastRecordedTime(reading.getTimestamp());
+            this.alertRules.setAlertAttributes(alertAttributes);
+            RulesEngine rulesEngine = new DefaultRulesEngine();
+            addFactsForCurrentReading(vehicle, reading);
+            this.alertRules.registerRules(); //register the rules of interest, with the rules Engine.
+            //validate the facts against rules.
+            rulesEngine.fire(this.alertRules.getRules(), this.alertRules.getFacts());
+        }
+    }
+    //configures vehicle facts based on vehicle properties and current Reading received
     public void addFactsForCurrentReading(Vehicle vehicle, Reading reading){
         Facts facts = this.alertRules.getFacts();
         facts.put("engineRpmHigh",isEngineRpmMoreThanRedLineRpm(vehicle, reading));

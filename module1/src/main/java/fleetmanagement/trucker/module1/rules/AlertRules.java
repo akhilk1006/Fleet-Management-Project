@@ -45,7 +45,7 @@ public class AlertRules {
 
     public void preConfigureAlertForCurrentVehicle(Alert alert){
         alert.setVin(this.alertAttributes.getVin());
-        alert.setRecordedTime(this.alertAttributes.getLastRecordedTime());
+        alert.setTimestamp(this.alertAttributes.getLastRecordedTime());
     }
 
     public void registerRules(){
@@ -62,8 +62,8 @@ public class AlertRules {
                 .then(facts -> {
                     Alert alert = new Alert();
                     preConfigureAlertForCurrentVehicle(alert);
-                    alert.setAlertMessage("RPM Too High");
-                    alert.setAlertPriority("HIGH");
+                    alert.setMessage("RPM Too High");
+                    alert.setPriority("HIGH");
                     this.alertRepository.save(alert);
                 }).build();
     }
@@ -74,8 +74,8 @@ public class AlertRules {
                 .then(facts -> {
                     Alert alert = new Alert();
                     preConfigureAlertForCurrentVehicle(alert);
-                    alert.setAlertMessage("Low Fuel Volume");
-                    alert.setAlertPriority("MEDIUM");
+                    alert.setMessage("Low Fuel Volume");
+                    alert.setPriority("MEDIUM");
                     this.alertRepository.save(alert);
                 }).build();
     }
@@ -86,8 +86,8 @@ public class AlertRules {
                 .then(facts -> {
                     Alert alert = new Alert();
                     preConfigureAlertForCurrentVehicle(alert);
-                    alert.setAlertMessage("Check Tire Pressure");
-                    alert.setAlertPriority("LOW");
+                    alert.setMessage("Check Tire Pressure");
+                    alert.setPriority("LOW");
                     this.alertRepository.save(alert);
                 }).build();
     }
@@ -98,8 +98,8 @@ public class AlertRules {
                 .then(facts -> {
                     Alert alert = new Alert();
                     preConfigureAlertForCurrentVehicle(alert);
-                    alert.setAlertMessage("Low Engine Coolant");
-                    alert.setAlertPriority("LOW");
+                    alert.setMessage("Low Engine Coolant");
+                    alert.setPriority("LOW");
                     this.alertRepository.save(alert);
                 }).build();
     }
@@ -109,8 +109,8 @@ public class AlertRules {
                 .then(facts -> {
                     Alert alert = new Alert();
                     preConfigureAlertForCurrentVehicle(alert);
-                    alert.setAlertMessage("Check Engine Bulb");
-                    alert.setAlertPriority("LOW");
+                    alert.setMessage("Check Engine Bulb");
+                    alert.setPriority("LOW");
                     this.alertRepository.save(alert);
                 }).build();
     }

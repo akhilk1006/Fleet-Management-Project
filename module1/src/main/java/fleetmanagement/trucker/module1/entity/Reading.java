@@ -2,6 +2,7 @@ package fleetmanagement.trucker.module1.entity;
 
 import org.springframework.data.domain.Persistable;
 import javax.persistence.*;
+import java.time.Instant;
 import java.util.UUID;
 
 @Entity
@@ -11,7 +12,7 @@ public class Reading implements Persistable<String> {
     private String vin;
     private double latitude;
     private double longitude;
-    private String timestamp;
+    private Instant timestamp;
     private double fuelVolume;
     private int speed;
     private int engineHp;
@@ -59,12 +60,12 @@ public class Reading implements Persistable<String> {
         this.longitude = longitude;
     }
 
-    public String getTimestamp() {
+    public Instant getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
+    public void setTimestamp(Instant timestamp) {
+        this.timestamp = timestamp ;
     }
 
     public double getFuelVolume() {
