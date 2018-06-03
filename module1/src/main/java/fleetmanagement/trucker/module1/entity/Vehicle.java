@@ -1,7 +1,6 @@
 package fleetmanagement.trucker.module1.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Vehicle {

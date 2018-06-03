@@ -13,7 +13,14 @@ public class Reading implements Persistable<String> {
     private double longitude;
     private String timestamp;
     private double fuelVolume;
-
+    private int speed;
+    private int engineHp;
+    private boolean checkEngineLightOn;
+    private boolean engineCoolantLow;
+    private boolean cruiseControlOn;
+    private int engineRpm;
+    @Embedded
+    private TireReading tires;
     @Override
     public String getId() {
         return null;
@@ -23,15 +30,6 @@ public class Reading implements Persistable<String> {
     public boolean isNew() {
         return true;
     }
-
-    private int speed;
-    private int engineHp;
-    private boolean checkEngineLightOn;
-    private boolean engineCoolantLow;
-    private boolean cruiseControlOn;
-    private int engineRpm;
-    @Embedded
-    private TireReading tires;
 
     public Reading() {
         this.id = UUID.randomUUID().toString();

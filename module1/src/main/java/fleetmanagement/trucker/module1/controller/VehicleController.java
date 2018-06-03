@@ -15,7 +15,7 @@ public class VehicleController {
 
     @CrossOrigin(origins = "http://mocker.egen.io")
     @PutMapping(value= "")
-    public void putVehicles(@RequestBody List<Vehicle> vehicles){
-        this.vehicleService.saveAll(vehicles);
+    public void putVehicles(@RequestBody List<Vehicle> vehicle){
+        this.vehicleService.saveAll(vehicle);
     }
 }
