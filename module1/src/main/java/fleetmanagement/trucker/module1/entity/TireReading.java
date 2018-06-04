@@ -43,4 +43,14 @@ public class TireReading {
     public void setRearRight(int rearRight) {
         this.rearRight = rearRight;
     }
+
+    @Override
+    public String toString() {
+        return "TireReading{" +
+                "frontLeft=" + frontLeft +
+                ", frontRight=" + frontRight +
+                ", rearLeft=" + rearLeft +
+                ", rearRight=" + rearRight +
+                '}';
+    }
 }

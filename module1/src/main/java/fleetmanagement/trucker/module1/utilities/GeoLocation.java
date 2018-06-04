@@ -27,4 +27,12 @@ public class GeoLocation {
     public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
+
+    @Override
+    public String toString() {
+        return "GeoLocation{" +
+                "latitude=" + latitude +
+                ", longitude=" + longitude +
+                '}';
+    }
 }

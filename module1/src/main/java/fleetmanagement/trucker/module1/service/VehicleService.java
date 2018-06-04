@@ -10,8 +10,6 @@ import java.util.List;
 
 public interface VehicleService {
 
-    void save(Vehicle vehicle);
-
     void saveAll(List<Vehicle> vehicles);
 
     Vehicle findById(String VehicleId) throws ResourceNotFoundException;

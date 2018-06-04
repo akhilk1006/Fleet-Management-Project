@@ -22,9 +22,14 @@ public class Reading implements Persistable<String> {
     private int engineRpm;
     @Embedded
     private TireReading tires;
+
     @Override
     public String getId() {
-        return null;
+        return this.id;
+    }
+
+    public void setId(String id){
+        this.id = id;
     }
 
     @Override //This forces Spring Data JPA to not run a select query before every insert.

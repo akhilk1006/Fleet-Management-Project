@@ -34,7 +34,7 @@ public class AlertController {
         Iterable<Alert> alerts = (priority.isEmpty() && timePeriod < 0)? this.alertService.findAll() :
                                             this.alertService.findAllWithCriteriaAndSort(priority, duration);
 
-        //uses LinkedHashSet to preserve the order of sorted entities.
+        //return as LinkedHashSet to preserve the order of sorted entities.
         LinkedHashSet<Alert> resultSet = new LinkedHashSet<>();
         alerts.forEach(resultSet::add);
         return resultSet;

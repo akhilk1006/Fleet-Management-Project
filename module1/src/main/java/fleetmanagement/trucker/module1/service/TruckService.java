@@ -27,10 +27,6 @@ public class TruckService implements VehicleService {
     @Autowired
     AlertRepository alertRepository;
 
-    @Override
-    public void save(Vehicle vehicle) {
-        this.vehicleRepository.save(vehicle);
-    }
 
     @Override
     public void saveAll(List<Vehicle> vehicles){

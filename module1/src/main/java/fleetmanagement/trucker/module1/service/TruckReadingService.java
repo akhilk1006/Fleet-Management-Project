@@ -3,7 +3,6 @@ package fleetmanagement.trucker.module1.service;
 import fleetmanagement.trucker.module1.entity.Reading;
 import fleetmanagement.trucker.module1.entity.TireReading;
 import fleetmanagement.trucker.module1.entity.Vehicle;
-import fleetmanagement.trucker.module1.exceptions.ResourceNotFoundException;
 import fleetmanagement.trucker.module1.repository.ReadingRepository;
 import fleetmanagement.trucker.module1.repository.VehicleRepository;
 import fleetmanagement.trucker.module1.rules.AlertRules;
@@ -16,6 +15,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Transactional
@@ -27,17 +27,22 @@ public class TruckReadingService implements ReadingService{
 
     @Autowired
     VehicleRepository vehicleRepository;
+
     @Autowired
     AlertRules alertRules;
 
     @Override
-    public void save(Reading reading) throws ResourceNotFoundException {
+    public void save(Reading reading){
         this.readingRepository.save(reading);
         checkForAlertsAndProcess(reading);
     }
 
+    public List<Reading> findAll(){
+        return (List<Reading>)this.readingRepository.findAll();
+    }
+
     @Async
-    public void checkForAlertsAndProcess(Reading reading) throws ResourceNotFoundException {
+    public void checkForAlertsAndProcess(Reading reading){
         Optional<Vehicle> result = this.vehicleRepository.findById(reading.getVin());
 
         if(result.isPresent()) {
