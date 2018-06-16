@@ -15,3 +15,7 @@
 **/target
 /trucker-api/src/main/resources/application.prod
 
+trucker-api/config/application.properties
+trucker-api/target/trucker-api-0.0.1-SNAPSHOT.jar
+trucker-api/target/trucker-api-0.0.1-SNAPSHOT.jar
+trucker-api/target/trucker-api-0.0.1-SNAPSHOT.jar
