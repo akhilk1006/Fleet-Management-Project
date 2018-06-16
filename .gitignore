@@ -12,6 +12,6 @@
 **/.metadata
 **/Servers
 **/RemoteSystemsTempFiles
-trucker-api/target/*
-!trucker-api/target/trucker-api-0.0.1-SNAPSHOT.jar
+**/target
+/trucker-api/src/main/resources/application.prod
 
