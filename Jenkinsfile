@@ -15,7 +15,7 @@ node {
     }
 
     stage("mvn build") {
-        sh "mvn clean install"
+        sh "mvn clean install -f trucker-api/pom.xml"
     }
 
     stage("docker build") {
