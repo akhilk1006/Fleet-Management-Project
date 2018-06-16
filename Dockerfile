@@ -6,4 +6,4 @@ RUN touch /api.jar && mkdir -p /config
 WORKDIR /
 EXPOSE 8080
 ENTRYPOINT ["./docker-entrypoint.sh"]
-CMD ["java","-jar", "api.jar"]
+CMD [ "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /api.jar" ]
