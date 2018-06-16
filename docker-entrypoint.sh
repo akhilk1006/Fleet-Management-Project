@@ -1,5 +1,6 @@
 #!/bin/sh
 
+mkdir trucker-api/config
 touch trucker-api/config/application.properties
 
 if [ -d /run/secrets/ ]; then
