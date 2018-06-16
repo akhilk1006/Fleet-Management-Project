@@ -1,6 +1,5 @@
 **/.idea
 **/.mvn
-**/target
 **/module1.iml
 **/mvnw
 **/mvnw.cmd
@@ -13,4 +12,6 @@
 **/.metadata
 **/Servers
 **/RemoteSystemsTempFiles
-**/target/*
+trucker-api/target/*
+!trucker-api/target/trucker-api-0.0.1-SNAPSHOT.jar
+
