@@ -2,5 +2,6 @@
 seed for the Webservices & Cloud project
 
 ### For the final module submission, update following urls for your app:
-**`Jenkins URL`**: `http://ec2-<somehost>.amazonaws.com/jenkins`    
-**`Swagger URL`**: `http://18.191.149.50:8080/api/swagger-ui.html`
+**`Jenkins URL`**:    `http://18.191.149.50:8080`    
+**`Swagger URL`**:    `http://18.191.149.50:8080/api/swagger-ui.html`
+**`Portainer URL`**:  `http://18.191.149.50:9000/#/dashboard`
