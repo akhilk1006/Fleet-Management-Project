@@ -4,14 +4,19 @@ package fleetmanagement.trucker.module1.rules;
 import fleetmanagement.trucker.module1.entity.Alert;
 import fleetmanagement.trucker.module1.repository.AlertRepository;
 import fleetmanagement.trucker.module1.utilities.AlertAttributes;
+import fleetmanagement.trucker.module1.utilities.AmazonSimpleMailServiceUtility;
 import org.jeasy.rules.api.Facts;
 import org.jeasy.rules.api.Rule;
 import org.jeasy.rules.api.Rules;
 import org.jeasy.rules.core.RuleBuilder;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
+
+import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
 
 @Component
 @Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
@@ -65,6 +70,7 @@ public class AlertRules {
                     alert.setMessage("RPM Too High");
                     alert.setPriority("HIGH");
                     this.alertRepository.save(alert);
+                    sendEmail(alert.getVin(), alert.getMessage());
                 }).build();
     }
 
@@ -78,6 +84,12 @@ public class AlertRules {
                     alert.setPriority("MEDIUM");
                     this.alertRepository.save(alert);
                 }).build();
+    }
+
+    @Async
+    public void sendEmail(String vin, String message) throws UnsupportedEncodingException, MessagingException {
+        AmazonSimpleMailServiceUtility emailService = new AmazonSimpleMailServiceUtility();
+        emailService.sendEmail(vin, message);
     }
 
     public Rule getTirePressureRule(){

@@ -12,4 +12,5 @@ public interface AlertRepository extends CrudRepository<Alert, String> {
 
     @Query("SELECT alert FROM Alert alert WHERE alert.priority = ?1 AND alert.timestamp >= ?2")
     List<Alert> findAllWithCriteria(String priority, Instant duration);
+
 }
