@@ -21,10 +21,6 @@ public class AmazonSimpleMailServiceUtility {
 
      public AmazonSimpleMailServiceUtility(){
         this.props = new Properties();
-        props.put("mail.transport.protocol", "smtp");
-        props.put("mail.smtp.port", PORT);
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.auth", "true");
         this.FROM = "akhilchowdary87@gmail.com";
         this.FROMNAME = "Akhil";
         this.TO = "akhilk1006@gmail.com";
@@ -33,6 +29,10 @@ public class AmazonSimpleMailServiceUtility {
         this.SUBJECT = "Vehicle Alert";
         this.SMTP_USERNAME = "AKIAIGQL7LQNRRP4IZ2Q";
         this.SMTP_PASSWORD = "AotHTNBuwWnQV987Dkx0ytPeRcXLwlsUtxIvLLJtOQHj";
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.port", PORT);
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.auth", "true");
      }
 
         public void sendEmail(String vehicleIdentity, String message){
