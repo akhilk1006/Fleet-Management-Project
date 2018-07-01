@@ -52,7 +52,7 @@ public class VehicleAlertServiceTest {
                 .thenReturn(this.alerts);
         Mockito.when(this.alertRepository.findAllByVin("1VWAP7A35CC020276"))
                 .thenReturn(this.alerts);
-        Mockito.when(this.alertRepository.findAllWithCriteria(any(String.class), any(Instant.class)))
+        Mockito.when(this.alertRepository.findAllByPriorityAndTimestampGreaterThanEqual(any(String.class), any(Instant.class)))
                 .thenReturn(this.alerts);
 
     }

@@ -26,7 +26,7 @@ public class EngineCoolantLow {
     @Action
     public void triggerAlert(@Fact("vehicleId") String vin, @Fact("timestamp") String timestamp){
         String message = "Engine Coolant Low";
-        Alert alert  = new Alert(vin, message, "LOW", Instant.parse(timestamp));
+        Alert alert  = new Alert(vin, message, "LOW", Instant.now());
         alertRepository.save(alert);
     }
 }

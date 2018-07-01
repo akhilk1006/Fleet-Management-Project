@@ -26,7 +26,7 @@ public class FuelVolume {
     @Action
     public void triggerAlert(@Fact("vehicleId") String vin, @Fact("timestamp") String timestamp){
         String message = "fuel volume is less than 10% of Max Fuel Volume";
-        Alert alert  = new Alert(vin, message, "MEDIUM", Instant.parse(timestamp));
+        Alert alert  = new Alert(vin, message, "MEDIUM", Instant.now());
         alertRepository.save(alert);
     }
 }

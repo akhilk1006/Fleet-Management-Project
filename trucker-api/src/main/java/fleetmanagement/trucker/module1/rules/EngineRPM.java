@@ -34,7 +34,7 @@ public class EngineRPM{
     @Action
     public void triggerAlert(@Fact("vehicleId") String vin, @Fact("timestamp") String timestamp){
         String message = "RPM too HIGH";
-        Alert alert  = new Alert(vin, message, "HIGH", Instant.parse(timestamp));
+        Alert alert  = new Alert(vin, message, "HIGH", Instant.now());
         alertRepository.save(alert);
         emailService.sendEmail(vin, message);
         smsService.sendSMS("+15168137281", message);

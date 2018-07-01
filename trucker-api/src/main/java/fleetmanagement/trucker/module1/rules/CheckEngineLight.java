@@ -25,7 +25,7 @@ public class CheckEngineLight {
     @Action
     public void triggerAlert(@Fact("vehicleId") String vin, @Fact("timestamp") String timestamp){
         String message = "Check Engine Bulb is on";
-        Alert alert  = new Alert(vin, message, "LOW", Instant.parse(timestamp));
+        Alert alert  = new Alert(vin, message, "LOW", Instant.now());
         alertRepository.save(alert);
     }
 }

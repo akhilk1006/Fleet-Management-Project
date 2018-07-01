@@ -38,9 +38,9 @@ public class AlertController {
             response = Alert.class, responseContainer = "List")
     @GetMapping("")
     public LinkedHashSet<Alert> findAllAlerts(@ApiParam(name = "priority", required = false)
-                                              @RequestParam(value = "priority", defaultValue = "") final String priority,
+                                              @RequestParam(value = "priority", defaultValue = "") String priority,
                                               @ApiParam(name = "timeperiod", required = false)
-                                              @RequestParam(value = "timeperiod", defaultValue = "-1") final int timePeriod){
+                                              @RequestParam(value = "timeperiod", defaultValue = "-1") int timePeriod){
 
         Instant duration = (timePeriod >= 0)? Instant.now().minus(Duration.ofHours(timePeriod)) : Instant.EPOCH;
         Iterable<Alert> alerts = (priority.isEmpty() && timePeriod < 0)? this.alertService.findAll() :

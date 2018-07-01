@@ -10,7 +10,6 @@ import java.util.List;
 public interface AlertRepository extends CrudRepository<Alert, String> {
     List<Alert> findAllByVin(String vin);
 
-    @Query("SELECT alert FROM Alert alert WHERE alert.priority = ?1 AND alert.timestamp >= ?2")
-    List<Alert> findAllWithCriteria(String priority, Instant duration);
+    List<Alert> findAllByPriorityAndTimestampGreaterThanEqual(String priority, Instant timestamp);
 
 }

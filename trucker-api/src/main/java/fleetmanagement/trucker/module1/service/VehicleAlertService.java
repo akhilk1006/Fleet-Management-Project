@@ -30,7 +30,7 @@ public class VehicleAlertService implements AlertService {
 
     @Override
     public List<Alert> findAllWithCriteriaAndSort(String priority, Instant duration) {
-        List<Alert> alerts = alertRepository.findAllWithCriteria(priority, duration);
+        List<Alert> alerts = alertRepository.findAllByPriorityAndTimestampGreaterThanEqual(priority, duration);
         return sortVehiclesBasedOnAlertFrequency(alerts);
     }
 
