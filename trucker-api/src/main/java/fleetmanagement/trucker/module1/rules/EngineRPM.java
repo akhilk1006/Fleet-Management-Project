@@ -2,7 +2,8 @@ package fleetmanagement.trucker.module1.rules;
 
 import fleetmanagement.trucker.module1.entity.Alert;
 import fleetmanagement.trucker.module1.repository.AlertRepository;
-import fleetmanagement.trucker.module1.utilities.AmazonSimpleMailServiceUtility;
+import fleetmanagement.trucker.module1.utilities.AmazonSESUtility;
+import fleetmanagement.trucker.module1.utilities.AmazonSNSUtility;
 import org.jeasy.rules.annotation.Action;
 import org.jeasy.rules.annotation.Condition;
 import org.jeasy.rules.annotation.Fact;
@@ -20,7 +21,10 @@ public class EngineRPM{
     AlertRepository alertRepository;
 
     @Autowired
-    AmazonSimpleMailServiceUtility mailService;
+    AmazonSESUtility emailService;
+
+    @Autowired
+    AmazonSNSUtility smsService;
 
     @Condition
     public boolean rpmTooHigh(@Fact("engineRPMHigh") boolean engineRPM){
@@ -32,6 +36,7 @@ public class EngineRPM{
         String message = "RPM too HIGH";
         Alert alert  = new Alert(vin, message, "HIGH", Instant.parse(timestamp));
         alertRepository.save(alert);
-        mailService.sendEmail(vin, message);
+        emailService.sendEmail(vin, message);
+        smsService.sendSMS("+15168137281", message);
     }
 }

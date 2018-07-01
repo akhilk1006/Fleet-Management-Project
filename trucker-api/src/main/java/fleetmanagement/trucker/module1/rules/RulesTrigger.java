@@ -8,8 +8,8 @@ import org.jeasy.rules.api.Rules;
 @Component
 public class RulesTrigger {
 
-    RulesEngine rulesEngine;
-    Rules rules;
+    private final RulesEngine rulesEngine;
+    private final Rules rules;
 
     public RulesTrigger(EngineRPM engineRPM, EngineCoolantLow engineCoolantLow,
                         CheckEngineLight checkEngineLight, TirePressure tirePressure,

@@ -1,5 +1,7 @@
 package fleetmanagement.trucker.module1;
 
+import com.amazonaws.services.sns.AmazonSNS;
+import com.amazonaws.services.sns.AmazonSNSClientBuilder;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -25,5 +27,11 @@ public class Module1Application {
         executor.setQueueCapacity(25);
         executor.initialize();
         return executor;
+    }
+
+    @Bean
+    public AmazonSNS sns(){
+        AmazonSNS snsClient = AmazonSNSClientBuilder.defaultClient();
+        return snsClient;
     }
 }

@@ -11,7 +11,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
 @Component
-public class AmazonSimpleMailServiceUtility {
+public class AmazonSESUtility {
 
      private String FROM;
      private String FROMNAME;
@@ -23,7 +23,7 @@ public class AmazonSimpleMailServiceUtility {
      private String SUBJECT;
      private Properties props;
 
-     public AmazonSimpleMailServiceUtility(){
+     public AmazonSESUtility(){
         this.props = new Properties();
         this.FROM = "akhilchowdary87@gmail.com";
         this.FROMNAME = "Akhil";
