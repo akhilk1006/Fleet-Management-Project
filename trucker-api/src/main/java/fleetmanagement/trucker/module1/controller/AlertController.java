@@ -21,9 +21,6 @@ public class AlertController {
     @Autowired
     AlertService alertService;
 
-    @Autowired
-    Instant instant;
-
     @ApiOperation(value = "find all alerts of a vehicle.",
                   notes = "This end point can be used to find all historical alerts of a vehicle.",
                   response = Alert.class, responseContainer = "List")
@@ -45,7 +42,7 @@ public class AlertController {
                                               @ApiParam(name = "timeperiod", required = false)
                                               @RequestParam(value = "timeperiod", defaultValue = "-1") final int timePeriod){
 
-        Instant duration = (timePeriod >= 0)? instant.now().minus(Duration.ofHours(timePeriod)) : this.instant.EPOCH;
+        Instant duration = (timePeriod >= 0)? Instant.now().minus(Duration.ofHours(timePeriod)) : Instant.EPOCH;
         Iterable<Alert> alerts = (priority.isEmpty() && timePeriod < 0)? this.alertService.findAll() :
                                             this.alertService.findAllWithCriteriaAndSort(priority, duration);
 

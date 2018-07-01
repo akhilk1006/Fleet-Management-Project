@@ -23,7 +23,7 @@ public class ReadingController {
     @CrossOrigin(origins = "http://mocker.egen.io")
     @PostMapping("")
     public void postReading(@RequestBody Reading reading){
-        readingService.save(reading);
+        readingService.processReading(reading);
     }
 
     @ApiOperation(value = "get all the readings of all vehicles",

@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface ReadingService {
     void save(Reading reading);
-
+    void processReading(Reading reading);
     List<Reading> findAll();
 }

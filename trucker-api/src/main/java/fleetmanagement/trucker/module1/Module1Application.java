@@ -26,9 +26,4 @@ public class Module1Application {
         executor.initialize();
         return executor;
     }
-
-    @Bean
-    public Instant currentTimeBean(){
-        return Instant.now();
-    }
 }

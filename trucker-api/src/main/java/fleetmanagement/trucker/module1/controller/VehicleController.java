@@ -20,9 +20,6 @@ public class VehicleController {
     @Autowired
     VehicleService vehicleService;
 
-    @Autowired
-    Instant currentInstant;
-
     @ApiOperation(value = "UPSERT's vehicle information",
                   notes = "This end point can insert or update(if already exists), vehicle data.")
     @CrossOrigin(origins = "http://mocker.egen.io")
@@ -53,7 +50,7 @@ public class VehicleController {
             response = GeoLocation.class, responseContainer = "List")
     @GetMapping("{id}/geolocation")
     public List<GeoLocation> findGeoLocationsById(@PathVariable final String id){
-        return this.vehicleService.findGeoLocationsById(this.currentInstant, id);
+        return this.vehicleService.findGeoLocationsById(Instant.now(), id);
     }
 
 }

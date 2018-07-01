@@ -1,6 +1,7 @@
 package fleetmanagement.trucker.module1.entity;
 
 import javax.persistence.*;
+import java.time.Instant;
 
 @Entity
 public class Vehicle {
@@ -9,7 +10,7 @@ public class Vehicle {
     private String vin;
     private String make;
     private String model;
-    private String lastServiceDate;
+    private Instant lastServiceDate;
     private int    year;
     private int    redlineRpm;
     private double maxFuelVolume;
@@ -41,11 +42,11 @@ public class Vehicle {
         this.model = model;
     }
 
-    public String getLastServiceDate() {
+    public Instant getLastServiceDate() {
         return lastServiceDate;
     }
 
-    public void setLastServiceDate(String lastServiceDate) {
+    public void setLastServiceDate(Instant lastServiceDate) {
         this.lastServiceDate = lastServiceDate;
     }
 

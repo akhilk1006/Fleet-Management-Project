@@ -84,7 +84,7 @@ public class TruckServiceTest {
 
     private Vehicle getTestVehicle(){
         Vehicle vehicle = new Vehicle();
-        vehicle.setLastServiceDate("2017-05-25T17:31:25.268Z");
+        vehicle.setLastServiceDate(Instant.parse("2017-05-25T17:31:25.268Z"));
         vehicle.setMake("HONDA");
         vehicle.setMaxFuelVolume(1200);
         vehicle.setRedlineRpm(5000);

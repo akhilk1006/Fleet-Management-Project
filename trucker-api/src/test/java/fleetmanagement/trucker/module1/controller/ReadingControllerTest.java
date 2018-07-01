@@ -75,8 +75,8 @@ public class ReadingControllerTest {
 
     @Test
     public void postReading() throws Exception {
+        this.readingRepository.delete(reading);
         ObjectMapper mapper = new ObjectMapper();
-        this.reading.setId(UUID.randomUUID().toString());
         this.mockMvc.perform(MockMvcRequestBuilders.post("/readings")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(mapper.writeValueAsBytes(this.reading)))

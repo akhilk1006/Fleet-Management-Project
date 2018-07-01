@@ -28,10 +28,6 @@ public class Reading implements Persistable<String> {
         return this.id;
     }
 
-    public void setId(String id){
-        this.id = id;
-    }
-
     @Override //This forces Spring Data JPA to not run a select query before every insert.
     public boolean isNew() {
         return true;

@@ -1,12 +1,16 @@
 package fleetmanagement.trucker.module1.utilities;
 
 
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Component;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
+@Component
 public class AmazonSimpleMailServiceUtility {
 
      private String FROM;
@@ -35,14 +39,15 @@ public class AmazonSimpleMailServiceUtility {
         props.put("mail.smtp.auth", "true");
      }
 
-        public void sendEmail(String vehicleIdentity, String message){
-        String BODY = String.join(
-                System.getProperty("line.separator"),
-                "<h1>Vehicle Alert</h1>",
-                "<h4>The following alert was triggered on your vehicle</h4>",
-                "<p>Alert: "+ message + "</p>",
-                "<p>Vehicle Identification Number: "+vehicleIdentity+"</p>"
-        );
+     @Async
+     public void sendEmail(String vehicleIdentity, String message){
+         String BODY = String.join(
+                         System.getProperty("line.separator"),
+                            "<h1>Vehicle Alert</h1>",
+                            "<h4>The following alert was triggered on your vehicle</h4>",
+                            "<p>Alert: "+ message + "</p>",
+                            "<p>Vehicle Identification Number: "+vehicleIdentity+"</p>"
+                       );
         Session session = Session.getDefaultInstance(props);
         MimeMessage msg = new MimeMessage(session);
         try {

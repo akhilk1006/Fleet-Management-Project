@@ -1,9 +1,7 @@
 package fleetmanagement.trucker.module1.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import fleetmanagement.trucker.module1.entity.Alert;
 import fleetmanagement.trucker.module1.repository.AlertRepository;
-import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 import org.junit.After;
 import org.junit.Before;
@@ -17,10 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
 import java.time.Instant;
-
-import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(

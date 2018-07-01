@@ -20,6 +20,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,11 +47,9 @@ public class VehicleControllerTest {
         this.vehicle.setVin("1HGCR2F3XFA027534");
         this.vehicle.setYear(2015);
         this.vehicle.setMaxFuelVolume(12);
-        this.vehicle.setLastServiceDate("2017-05-25T17:31:25.268Z");
         this.vehicle.setRedlineRpm(3000);
         this.vehicle.setMake("HONDA");
         this.vehicle.setModel("CIVIC");
-
         this.vehicleRepository.save(this.vehicle);
     }
 
@@ -77,9 +76,7 @@ public class VehicleControllerTest {
                     .andExpect(MockMvcResultMatchers.jsonPath("$[0].maxFuelVolume", Matchers.is((double)15)))
                     .andExpect(MockMvcResultMatchers.jsonPath("$[0].redlineRpm", Matchers.is(3000)))
                     .andExpect(MockMvcResultMatchers.jsonPath("$[0].make", Matchers.is("HONDA")))
-                    .andExpect(MockMvcResultMatchers.jsonPath("$[0].model", Matchers.is("CIVIC")))
-                    .andExpect(MockMvcResultMatchers.jsonPath("$[0].lastServiceDate", Matchers
-                                                                           .is("2017-05-25T17:31:25.268Z")));
+                    .andExpect(MockMvcResultMatchers.jsonPath("$[0].model", Matchers.is("CIVIC")));
     }
 
     @Test
@@ -92,9 +89,7 @@ public class VehicleControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].maxFuelVolume", Matchers.is((double)12)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].redlineRpm", Matchers.is(3000)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].make", Matchers.is("HONDA")))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].model", Matchers.is("CIVIC")))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].lastServiceDate", Matchers
-                        .is("2017-05-25T17:31:25.268Z")));
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].model", Matchers.is("CIVIC")));
     }
 
     @Test
@@ -106,9 +101,7 @@ public class VehicleControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.maxFuelVolume", Matchers.is((double)12)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.redlineRpm", Matchers.is(3000)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.make", Matchers.is("HONDA")))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.model", Matchers.is("CIVIC")))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.lastServiceDate", Matchers
-                        .is("2017-05-25T17:31:25.268Z")));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.model", Matchers.is("CIVIC")));
     }
 
     @Test
