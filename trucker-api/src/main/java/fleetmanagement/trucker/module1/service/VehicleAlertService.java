@@ -24,30 +24,13 @@ public class VehicleAlertService implements AlertService {
     }
 
     @Override
-    public Iterable<Alert> findAll() {
-        return this.alertRepository.findAll();
+    public List<Alert> findAll() {
+        return (List<Alert>)this.alertRepository.findAll();
     }
 
     @Override
-    public List<Alert> findAllWithCriteriaAndSort(String priority, Instant duration) {
+    public List<Alert> findAllWithCriteria(String priority, Instant duration) {
         List<Alert> alerts = alertRepository.findAllByPriorityAndTimestampGreaterThanEqual(priority, duration);
-        return sortVehiclesBasedOnAlertFrequency(alerts);
-    }
-
-    private List<Alert> sortVehiclesBasedOnAlertFrequency(List<Alert> alerts){
-        Hashtable<String, Integer> frequencyTable = buildFrequencyTable(alerts);
-        Collections.sort(alerts, (alert1, alert2) -> {
-            return frequencyTable.get(alert2.getVin()).compareTo(frequencyTable.get(alert1.getVin()));
-        });
         return alerts;
-    }
-
-    private Hashtable<String, Integer> buildFrequencyTable(Iterable<Alert> alerts){
-        Hashtable<String, Integer> frequencyTable = new Hashtable<>();
-        alerts.forEach((alert)->{
-            frequencyTable.putIfAbsent(alert.getVin(), 0);
-            frequencyTable.put(alert.getVin(), frequencyTable.get(alert.getVin()) + 1);
-        });
-        return frequencyTable;
     }
 }

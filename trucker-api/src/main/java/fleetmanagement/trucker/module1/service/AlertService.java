@@ -9,7 +9,7 @@ public interface AlertService {
 
     List<Alert> findAllByVin(String id);
 
-    Iterable<Alert> findAll();
+    List<Alert> findAll();
 
-    List<Alert> findAllWithCriteriaAndSort(String priority, Instant duration);
+    List<Alert> findAllWithCriteria(String priority, Instant duration);
 }

@@ -75,7 +75,7 @@ public class VehicleAlertServiceTest {
 
     @Test
     public void findAllWithCriteriaAndSort() {
-        Iterable<Alert> alerts = this.service.findAllWithCriteriaAndSort("HIGH", Instant.EPOCH);
+        Iterable<Alert> alerts = this.service.findAllWithCriteria("HIGH", Instant.EPOCH);
         assertEquals("all alerts should match", alerts, this.alerts);
     }
 }

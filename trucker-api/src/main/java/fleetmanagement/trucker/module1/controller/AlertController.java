@@ -31,24 +31,20 @@ public class AlertController {
     }
 
     @ApiOperation(value = "find all alerts of required priority within the duration specified",
-            notes = "lists all the alerts of required priority within the specified duration " +
-                    "and sorts the list based on number of alerts per vehicle. When queried " +
-                    "without Request Parameters(priority and duration) this operaton returns " +
-                    "all the alerts.",
+            notes = "lists all the alerts of required priority within the specified duration. " +
+                    "When queried without Request Parameters(priority and duration) this "+
+                    "operaton returns all the alerts.",
             response = Alert.class, responseContainer = "List")
     @GetMapping("")
-    public LinkedHashSet<Alert> findAllAlerts(@ApiParam(name = "priority", required = false)
-                                              @RequestParam(value = "priority", defaultValue = "") String priority,
-                                              @ApiParam(name = "timeperiod", required = false)
-                                              @RequestParam(value = "timeperiod", defaultValue = "-1") int timePeriod){
+    public List<Alert> findAllAlerts(@ApiParam(name = "priority", required = false)
+                                      @RequestParam(value = "priority", defaultValue = "") String priority,
+                                      @ApiParam(name = "timeperiod", required = false)
+                                      @RequestParam(value = "timeperiod", defaultValue = "-1") int timePeriod){
 
+        // get an Instant at the start of timeperiod, if no time period is specified then get all alerts.
         Instant duration = (timePeriod >= 0)? Instant.now().minus(Duration.ofHours(timePeriod)) : Instant.EPOCH;
-        Iterable<Alert> alerts = (priority.isEmpty() && timePeriod < 0)? this.alertService.findAll() :
-                                            this.alertService.findAllWithCriteriaAndSort(priority, duration);
-
-        //return as LinkedHashSet to preserve the order of sorted entities.
-        LinkedHashSet<Alert> resultSet = new LinkedHashSet<>();
-        alerts.forEach(resultSet::add);
-        return resultSet;
+        List<Alert> alerts = (priority.isEmpty() && timePeriod < 0)? this.alertService.findAll() :
+                                            this.alertService.findAllWithCriteria(priority, duration);
+        return alerts;
     }
 }
