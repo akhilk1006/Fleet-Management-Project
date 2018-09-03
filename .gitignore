@@ -1,14 +1,21 @@
 **/.idea
-
+**/.mvn
+**/module1.iml
+**/mvnw
+**/mvnw.cmd
 **/node_modules
 **/bower_components
 **/.tmp
 **/.dist
 **/.sass-cache
-
 **/.settings
 **/.metadata
 **/Servers
 **/RemoteSystemsTempFiles
+**/target
+/trucker-api/src/main/resources/application.prod
 
-**/target/*
+trucker-api/config/application.properties
+trucker-api/target/trucker-api-0.0.1-SNAPSHOT.jar
+trucker-api/target/trucker-api-0.0.1-SNAPSHOT.jar
+trucker-api/target/trucker-api-0.0.1-SNAPSHOT.jar
